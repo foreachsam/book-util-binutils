@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+
+<title>binutils - binutils 使用筆記</title>
+
+
+<link rel="canonical" href="https://foreachsam.github.io/book-util-binutils/book/content/deb-package/binutils/">
+
+
+<meta name="author" content="foreachsam">
+
+
+<meta property="og:url" content="https://foreachsam.github.io/book-util-binutils/book/content/deb-package/binutils/">
+<meta property="og:title" content="binutils - binutils 使用筆記">
+
+<meta name="apple-mobile-web-app-title" content="binutils - binutils 使用筆記">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">  
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../../assets/images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="../../../../../../assets/images/favicon.ico">
+<style>
+	@font-face {
+		font-family: 'Icon';
+		src: url('../../../assets/fonts/icon.eot?52m981');
+		src: url('../../../assets/fonts/icon.eot?#iefix52m981') format('embedded-opentype'),
+		url('../../../assets/fonts/icon.woff?52m981') format('woff'),
+		url('../../../assets/fonts/icon.ttf?52m981') format('truetype'),
+		url('../../../assets/fonts/icon.svg?52m981#icon') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+</style>
+<link rel="stylesheet" href="../../../assets/stylesheets/application-0dac3e5884.css"> 
+<link rel="stylesheet" href="../../../assets/stylesheets/palettes-05ab2406df.css">     
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Mono">
+<style>
+	body,
+	input {
+		font-family: 'Roboto',
+		Helvetica,
+		Arial,
+		sans-serif;
+	}
+
+	pre,
+	code {
+		font-family: 'Roboto Mono',
+		'Courier New',
+		'Courier',
+		monospace;
+	}
+</style>
+ 
+<script src="../../../assets/javascripts/modernizr-4ab42b99fd.js"></script>
+
+
+</head>
+
+
+  
+
+<body class="palette-primary-blue palette-accent-light-blue">
+	
+	<div class="backdrop">
+		<div class="backdrop-paper"></div>
+	</div>
+	<input class="toggle" type="checkbox" id="toggle-drawer">
+	<input class="toggle" type="checkbox" id="toggle-search">
+	<label class="toggle-button overlay" for="toggle-drawer"></label>
+	<header class="header">
+		<nav aria-label="Header">
+	<div class="bar default">
+		<div class="button button-menu" role="button" aria-label="Menu">
+			<label class="toggle-button icon icon-menu" for="toggle-drawer">
+				<span></span>
+			</label>
+		</div>
+		<div class="stretch">
+			<div class="title">
+				
+				<span class="path">
+            
+              
+                deb package <i class="icon icon-link"></i>
+              
+            
+          </span>  binutils
+			</div>
+		</div>
+		  
+		<div class="button button-github" role="button" aria-label="GitHub">
+			<a href="https://github.com/foreachsam/book-util-binutils" title="@foreachsam/book-util-binutils on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+		</div>
+		
+		<div class="button button-search" role="button" aria-label="Search">
+			<label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
+		</div>
+	</div>
+	<div class="bar search">
+		<div class="button button-close" role="button" aria-label="Close">
+			<label class="toggle-button icon icon-back" for="toggle-search"></label>
+		</div>
+		<div class="stretch">
+			<div class="field">
+				<input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck>
+			</div>
+		</div>
+		<div class="button button-reset" role="button" aria-label="Search">
+			<button class="toggle-button icon icon-close" id="reset-search"></button>
+		</div>
+	</div>
+</nav>
+	</header>
+	<main class="main">
+		
+		<div class="drawer">
+			<nav aria-label="Navigation">
+
+	<a href="https://foreachsam.github.io/book-util-binutils/book" class="project" title="binutils 使用筆記">
+		<div class="banner">
+
+			<div class="name">
+				<strong>binutils 使用筆記<span class="version"></span></strong>
+
+			</div>
+		</div>
+	</a>
+	<div class="scrollable">
+		<div class="wrapper">
+
+			<div class="toc">
+				<ul>
+
+	
+<li>
+	<div itemscope itemtype="http://schema.org/Article">
+		<a class="" title="首頁" href="../../.." itemprop="url">
+			首頁
+    	</a>
+	</div>
+	
+</li>
+
+
+	
+<li>
+	<span class="section">參考文件</span>
+	<ul>
+		
+
+			
+<li>
+	<div itemscope itemtype="http://schema.org/Article">
+		<a class="" title="manual" href="../../reference/manual/" itemprop="url">
+			manual
+    	</a>
+	</div>
+	
+</li>
+
+
+		
+	</ul>
+</li>
+
+
+	
+<li>
+	<span class="section">deb package</span>
+	<ul>
+		
+
+			
+<li>
+	<div itemscope itemtype="http://schema.org/Article">
+		<a class="" title="index" href="../" itemprop="url">
+			index
+    	</a>
+	</div>
+	
+</li>
+
+
+		
+
+			
+<li>
+	<div itemscope itemtype="http://schema.org/Article">
+		<a class="current" title="binutils" href="./" itemprop="url">
+			binutils
+    	</a>
+	</div>
+	    
+	<ul>
+		
+		<li class="anchor" >
+			<div itemscope itemtype="http://schema.org/Article">
+				<a title="下載套件" href="#_1" >
+                	下載套件
+				</a>
+			</div>
+		</li>
+		
+		<li class="anchor" >
+			<div itemscope itemtype="http://schema.org/Article">
+				<a title="解開套件" href="#_2" >
+                	解開套件
+				</a>
+			</div>
+		</li>
+		
+		<li class="anchor" >
+			<div itemscope itemtype="http://schema.org/Article">
+				<a title="觀看資料夾結構" href="#_3" >
+                	觀看資料夾結構
+				</a>
+			</div>
+		</li>
+		
+		<li class="anchor" >
+			<div itemscope itemtype="http://schema.org/Article">
+				<a title="manpage" href="#manpage" >
+                	manpage
+				</a>
+			</div>
+		</li>
+		
+		<li class="anchor" >
+			<div itemscope itemtype="http://schema.org/Article">
+				<a title="下載 Source Package" href="#source-package" >
+                	下載 Source Package
+				</a>
+			</div>
+		</li>
+		
+		<li class="anchor" >
+			<div itemscope itemtype="http://schema.org/Article">
+				<a title="套件資訊" href="#_4" >
+                	套件資訊
+				</a>
+			</div>
+		</li>
+		
+		<li class="anchor" >
+			<div itemscope itemtype="http://schema.org/Article">
+				<a title="原始碼套件資訊" href="#_5" >
+                	原始碼套件資訊
+				</a>
+			</div>
+		</li>
+		
+	</ul>
+	 
+</li>
+
+
+		
+	</ul>
+</li>
+
+
+	
+<li>
+	<span class="section">command</span>
+	<ul>
+		
+
+			
+<li>
+	<div itemscope itemtype="http://schema.org/Article">
+		<a class="" title="strings" href="../../command/strings/" itemprop="url">
+			strings
+    	</a>
+	</div>
+	
+</li>
+
+
+		
+	</ul>
+</li>
+
+
+				</ul>
+
+				<hr>
+				<span class="section">The author</span>
+				<ul>
+	
+					<li>
+						<a href="https://foreachsam.github.io/" target="_blank" title="foreachsam">
+                  			foreachsam
+            			</a>
+					</li>
+	
+				</ul>
+
+			</div>
+		</div>
+	</div>
+</nav>
+		</div>
+		<article class="article">
+			<div class="wrapper">
+				 <h1 id="binutils">binutils 套件探索</h1>
+<h2 id="_1">下載套件</h2>
+<p>下載「<a href="http://packages.ubuntu.com/xenial/binutils">binutils</a>」這個套件。</p>
+<pre class="code"><code class="language-sh">$ apt download binutils</code></pre>
+
+
+<h2 id="_2">解開套件</h2>
+<p>解開「binutils_2.26-8ubuntu2.1_amd64.deb」</p>
+<pre class="code"><code class="language-sh">$ dpkg -x binutils_2.26-8ubuntu2.1_amd64.deb binutils</code></pre>
+
+
+<h2 id="_3">觀看資料夾結構</h2>
+<p>執行</p>
+<pre class="code"><code class="language-sh">$ tree binutils</code></pre>
+
+
+<p>顯示</p>
+<pre class="code"><code>binutils
+└── usr
+    ├── bin
+    │   ├── addr2line -&gt; x86_64-linux-gnu-addr2line
+    │   ├── ar -&gt; x86_64-linux-gnu-ar
+    │   ├── as -&gt; x86_64-linux-gnu-as
+    │   ├── c++filt -&gt; x86_64-linux-gnu-c++filt
+    │   ├── dwp -&gt; x86_64-linux-gnu-dwp
+    │   ├── elfedit -&gt; x86_64-linux-gnu-elfedit
+    │   ├── gold -&gt; ld.gold
+    │   ├── gprof -&gt; x86_64-linux-gnu-gprof
+    │   ├── ld -&gt; x86_64-linux-gnu-ld
+    │   ├── ld.bfd -&gt; x86_64-linux-gnu-ld.bfd
+    │   ├── ld.gold -&gt; x86_64-linux-gnu-ld.gold
+    │   ├── nm -&gt; x86_64-linux-gnu-nm
+    │   ├── objcopy -&gt; x86_64-linux-gnu-objcopy
+    │   ├── objdump -&gt; x86_64-linux-gnu-objdump
+    │   ├── ranlib -&gt; x86_64-linux-gnu-ranlib
+    │   ├── readelf -&gt; x86_64-linux-gnu-readelf
+    │   ├── size -&gt; x86_64-linux-gnu-size
+    │   ├── strings -&gt; x86_64-linux-gnu-strings
+    │   ├── strip -&gt; x86_64-linux-gnu-strip
+    │   ├── x86_64-linux-gnu-addr2line
+    │   ├── x86_64-linux-gnu-ar
+    │   ├── x86_64-linux-gnu-as
+    │   ├── x86_64-linux-gnu-c++filt
+    │   ├── x86_64-linux-gnu-dwp
+    │   ├── x86_64-linux-gnu-elfedit
+    │   ├── x86_64-linux-gnu-gprof
+    │   ├── x86_64-linux-gnu-ld -&gt; ld.bfd
+    │   ├── x86_64-linux-gnu-ld.bfd
+    │   ├── x86_64-linux-gnu-ld.gold
+    │   ├── x86_64-linux-gnu-nm
+    │   ├── x86_64-linux-gnu-objcopy
+    │   ├── x86_64-linux-gnu-objdump
+    │   ├── x86_64-linux-gnu-ranlib
+    │   ├── x86_64-linux-gnu-readelf
+    │   ├── x86_64-linux-gnu-size
+    │   ├── x86_64-linux-gnu-strings
+    │   └── x86_64-linux-gnu-strip
+    ├── lib
+    │   ├── compat-ld
+    │   │   └── ld -&gt; ../../bin/ld.bfd
+    │   ├── gold-ld
+    │   │   └── ld -&gt; ../../bin/ld.gold
+    │   ├── ldscripts
+    │   │   ├── elf32_x86_64.x
+    │   │   ├── elf32_x86_64.xbn
+    │   │   ├── elf32_x86_64.xc
+    │   │   ├── elf32_x86_64.xd
+    │   │   ├── elf32_x86_64.xdc
+    │   │   ├── elf32_x86_64.xdw
+    │   │   ├── elf32_x86_64.xn
+    │   │   ├── elf32_x86_64.xr
+    │   │   ├── elf32_x86_64.xs
+    │   │   ├── elf32_x86_64.xsc
+    │   │   ├── elf32_x86_64.xsw
+    │   │   ├── elf32_x86_64.xu
+    │   │   ├── elf32_x86_64.xw
+    │   │   ├── elf_i386.x
+    │   │   ├── elf_i386.xbn
+    │   │   ├── elf_i386.xc
+    │   │   ├── elf_i386.xd
+    │   │   ├── elf_i386.xdc
+    │   │   ├── elf_i386.xdw
+    │   │   ├── elf_i386.xn
+    │   │   ├── elf_i386.xr
+    │   │   ├── elf_i386.xs
+    │   │   ├── elf_i386.xsc
+    │   │   ├── elf_i386.xsw
+    │   │   ├── elf_i386.xu
+    │   │   ├── elf_i386.xw
+    │   │   ├── elf_iamcu.x
+    │   │   ├── elf_iamcu.xbn
+    │   │   ├── elf_iamcu.xc
+    │   │   ├── elf_iamcu.xd
+    │   │   ├── elf_iamcu.xdc
+    │   │   ├── elf_iamcu.xdw
+    │   │   ├── elf_iamcu.xn
+    │   │   ├── elf_iamcu.xr
+    │   │   ├── elf_iamcu.xs
+    │   │   ├── elf_iamcu.xsc
+    │   │   ├── elf_iamcu.xsw
+    │   │   ├── elf_iamcu.xu
+    │   │   ├── elf_iamcu.xw
+    │   │   ├── elf_k1om.x
+    │   │   ├── elf_k1om.xbn
+    │   │   ├── elf_k1om.xc
+    │   │   ├── elf_k1om.xd
+    │   │   ├── elf_k1om.xdc
+    │   │   ├── elf_k1om.xdw
+    │   │   ├── elf_k1om.xn
+    │   │   ├── elf_k1om.xr
+    │   │   ├── elf_k1om.xs
+    │   │   ├── elf_k1om.xsc
+    │   │   ├── elf_k1om.xsw
+    │   │   ├── elf_k1om.xu
+    │   │   ├── elf_k1om.xw
+    │   │   ├── elf_l1om.x
+    │   │   ├── elf_l1om.xbn
+    │   │   ├── elf_l1om.xc
+    │   │   ├── elf_l1om.xd
+    │   │   ├── elf_l1om.xdc
+    │   │   ├── elf_l1om.xdw
+    │   │   ├── elf_l1om.xn
+    │   │   ├── elf_l1om.xr
+    │   │   ├── elf_l1om.xs
+    │   │   ├── elf_l1om.xsc
+    │   │   ├── elf_l1om.xsw
+    │   │   ├── elf_l1om.xu
+    │   │   ├── elf_l1om.xw
+    │   │   ├── elf_x86_64.x
+    │   │   ├── elf_x86_64.xbn
+    │   │   ├── elf_x86_64.xc
+    │   │   ├── elf_x86_64.xd
+    │   │   ├── elf_x86_64.xdc
+    │   │   ├── elf_x86_64.xdw
+    │   │   ├── elf_x86_64.xn
+    │   │   ├── elf_x86_64.xr
+    │   │   ├── elf_x86_64.xs
+    │   │   ├── elf_x86_64.xsc
+    │   │   ├── elf_x86_64.xsw
+    │   │   ├── elf_x86_64.xu
+    │   │   ├── elf_x86_64.xw
+    │   │   ├── hppa64linux.x
+    │   │   ├── hppa64linux.xbn
+    │   │   ├── hppa64linux.xc
+    │   │   ├── hppa64linux.xn
+    │   │   ├── hppa64linux.xr
+    │   │   ├── hppa64linux.xs
+    │   │   ├── hppa64linux.xsc
+    │   │   ├── hppa64linux.xsw
+    │   │   ├── hppa64linux.xu
+    │   │   ├── hppa64linux.xw
+    │   │   ├── i386linux.x
+    │   │   ├── i386linux.xbn
+    │   │   ├── i386linux.xn
+    │   │   ├── i386linux.xr
+    │   │   ├── i386linux.xu
+    │   │   ├── i386pep.x
+    │   │   ├── i386pep.xa
+    │   │   ├── i386pep.xbn
+    │   │   ├── i386pep.xn
+    │   │   ├── i386pep.xr
+    │   │   ├── i386pep.xu
+    │   │   ├── i386pe.x
+    │   │   ├── i386pe.xa
+    │   │   ├── i386pe.xbn
+    │   │   ├── i386pe.xn
+    │   │   ├── i386pe.xr
+    │   │   └── i386pe.xu
+    │   └── x86_64-linux-gnu
+    │       ├── libbfd-2.26-system.so
+    │       └── libopcodes-2.26-system.so
+    └── share
+        ├── bug
+        │   └── binutils
+        │       └── presubj
+        ├── doc
+        │   └── binutils
+        │       ├── bfd
+        │       │   ├── PORTING.gz
+        │       │   └── TODO.gz
+        │       ├── changelog.Debian.gz
+        │       ├── copyright
+        │       ├── gas
+        │       │   └── NEWS.gz
+        │       ├── gprof
+        │       │   ├── bbconv.pl
+        │       │   ├── TEST.gz
+        │       │   └── TODO.gz
+        │       ├── ld
+        │       │   ├── NEWS.gz
+        │       │   └── TODO.gz
+        │       ├── NEWS.gz
+        │       ├── README.cross.gz
+        │       └── test-summary.gz
+        ├── lintian
+        │   └── overrides
+        │       └── binutils
+        └── man
+            └── man1
+                ├── addr2line.1.gz -&gt; x86_64-linux-gnu-addr2line.1.gz
+                ├── ar.1.gz -&gt; x86_64-linux-gnu-ar.1.gz
+                ├── as.1.gz -&gt; x86_64-linux-gnu-as.1.gz
+                ├── c++filt.1.gz -&gt; x86_64-linux-gnu-c++filt.1.gz
+                ├── dwp.1.gz -&gt; x86_64-linux-gnu-dwp.1.gz
+                ├── elfedit.1.gz -&gt; x86_64-linux-gnu-elfedit.1.gz
+                ├── gold.1.gz -&gt; ld.gold.1.gz
+                ├── gprof.1.gz -&gt; x86_64-linux-gnu-gprof.1.gz
+                ├── ld.1.gz -&gt; x86_64-linux-gnu-ld.1.gz
+                ├── ld.bfd.1.gz -&gt; x86_64-linux-gnu-ld.bfd.1.gz
+                ├── ld.gold.1.gz -&gt; x86_64-linux-gnu-ld.gold.1.gz
+                ├── nm.1.gz -&gt; x86_64-linux-gnu-nm.1.gz
+                ├── objcopy.1.gz -&gt; x86_64-linux-gnu-objcopy.1.gz
+                ├── objdump.1.gz -&gt; x86_64-linux-gnu-objdump.1.gz
+                ├── ranlib.1.gz -&gt; x86_64-linux-gnu-ranlib.1.gz
+                ├── readelf.1.gz -&gt; x86_64-linux-gnu-readelf.1.gz
+                ├── size.1.gz -&gt; x86_64-linux-gnu-size.1.gz
+                ├── strings.1.gz -&gt; x86_64-linux-gnu-strings.1.gz
+                ├── strip.1.gz -&gt; x86_64-linux-gnu-strip.1.gz
+                ├── x86_64-linux-gnu-addr2line.1.gz
+                ├── x86_64-linux-gnu-ar.1.gz
+                ├── x86_64-linux-gnu-as.1.gz
+                ├── x86_64-linux-gnu-c++filt.1.gz
+                ├── x86_64-linux-gnu-dwp.1.gz
+                ├── x86_64-linux-gnu-elfedit.1.gz
+                ├── x86_64-linux-gnu-gprof.1.gz
+                ├── x86_64-linux-gnu-ld.1.gz -&gt; x86_64-linux-gnu-ld.bfd.1.gz
+                ├── x86_64-linux-gnu-ld.bfd.1.gz
+                ├── x86_64-linux-gnu-ld.gold.1.gz
+                ├── x86_64-linux-gnu-nm.1.gz
+                ├── x86_64-linux-gnu-objcopy.1.gz
+                ├── x86_64-linux-gnu-objdump.1.gz
+                ├── x86_64-linux-gnu-ranlib.1.gz
+                ├── x86_64-linux-gnu-readelf.1.gz
+                ├── x86_64-linux-gnu-size.1.gz
+                ├── x86_64-linux-gnu-strings.1.gz
+                └── x86_64-linux-gnu-strip.1.gz
+
+20 directories, 198 files</code></pre>
+
+
+<p>若有安裝這個套件的話，可執行</p>
+<pre class="code"><code class="language-sh">$ dpkg -L binutils</code></pre>
+
+
+<p>顯示</p>
+<pre class="code"><code>/.
+/usr
+/usr/bin
+/usr/bin/x86_64-linux-gnu-nm
+/usr/bin/x86_64-linux-gnu-c++filt
+/usr/bin/x86_64-linux-gnu-readelf
+/usr/bin/x86_64-linux-gnu-dwp
+/usr/bin/x86_64-linux-gnu-ar
+/usr/bin/x86_64-linux-gnu-size
+/usr/bin/x86_64-linux-gnu-addr2line
+/usr/bin/x86_64-linux-gnu-ranlib
+/usr/bin/x86_64-linux-gnu-as
+/usr/bin/x86_64-linux-gnu-elfedit
+/usr/bin/x86_64-linux-gnu-ld.bfd
+/usr/bin/x86_64-linux-gnu-strip
+/usr/bin/x86_64-linux-gnu-strings
+/usr/bin/x86_64-linux-gnu-ld.gold
+/usr/bin/x86_64-linux-gnu-gprof
+/usr/bin/x86_64-linux-gnu-objdump
+/usr/bin/x86_64-linux-gnu-objcopy
+/usr/lib
+/usr/lib/x86_64-linux-gnu
+/usr/lib/x86_64-linux-gnu/libbfd-2.26-system.so
+/usr/lib/x86_64-linux-gnu/libopcodes-2.26-system.so
+/usr/lib/ldscripts
+/usr/lib/ldscripts/elf_k1om.xsc
+/usr/lib/ldscripts/i386linux.xu
+/usr/lib/ldscripts/elf_iamcu.xw
+/usr/lib/ldscripts/i386pe.xbn
+/usr/lib/ldscripts/elf_k1om.xw
+/usr/lib/ldscripts/elf_i386.xsw
+/usr/lib/ldscripts/hppa64linux.xn
+/usr/lib/ldscripts/hppa64linux.xu
+/usr/lib/ldscripts/elf32_x86_64.xdc
+/usr/lib/ldscripts/elf_x86_64.xr
+/usr/lib/ldscripts/elf_iamcu.xu
+/usr/lib/ldscripts/i386linux.xr
+/usr/lib/ldscripts/elf_i386.xs
+/usr/lib/ldscripts/elf_i386.xw
+/usr/lib/ldscripts/i386pep.xr
+/usr/lib/ldscripts/elf_i386.xu
+/usr/lib/ldscripts/elf_l1om.xdc
+/usr/lib/ldscripts/elf_i386.xn
+/usr/lib/ldscripts/elf_x86_64.xsc
+/usr/lib/ldscripts/i386pe.xu
+/usr/lib/ldscripts/elf32_x86_64.xdw
+/usr/lib/ldscripts/i386pep.x
+/usr/lib/ldscripts/hppa64linux.xc
+/usr/lib/ldscripts/elf_iamcu.xbn
+/usr/lib/ldscripts/elf_l1om.xd
+/usr/lib/ldscripts/hppa64linux.xsc
+/usr/lib/ldscripts/hppa64linux.xs
+/usr/lib/ldscripts/elf_iamcu.xn
+/usr/lib/ldscripts/elf32_x86_64.xs
+/usr/lib/ldscripts/elf_x86_64.xdc
+/usr/lib/ldscripts/elf_x86_64.x
+/usr/lib/ldscripts/elf_k1om.xdc
+/usr/lib/ldscripts/i386pe.xn
+/usr/lib/ldscripts/elf_x86_64.xsw
+/usr/lib/ldscripts/elf_k1om.xd
+/usr/lib/ldscripts/elf_k1om.xu
+/usr/lib/ldscripts/hppa64linux.xbn
+/usr/lib/ldscripts/elf_l1om.xs
+/usr/lib/ldscripts/elf_x86_64.xd
+/usr/lib/ldscripts/elf_k1om.xr
+/usr/lib/ldscripts/elf_l1om.xw
+/usr/lib/ldscripts/elf32_x86_64.xbn
+/usr/lib/ldscripts/elf_l1om.x
+/usr/lib/ldscripts/elf32_x86_64.xsw
+/usr/lib/ldscripts/elf_i386.xc
+/usr/lib/ldscripts/hppa64linux.xw
+/usr/lib/ldscripts/elf_k1om.x
+/usr/lib/ldscripts/elf32_x86_64.xsc
+/usr/lib/ldscripts/elf_iamcu.xdw
+/usr/lib/ldscripts/i386pe.xa
+/usr/lib/ldscripts/elf_l1om.xu
+/usr/lib/ldscripts/elf_k1om.xc
+/usr/lib/ldscripts/hppa64linux.xsw
+/usr/lib/ldscripts/elf_k1om.xn
+/usr/lib/ldscripts/elf_l1om.xbn
+/usr/lib/ldscripts/elf_l1om.xsc
+/usr/lib/ldscripts/elf_k1om.xs
+/usr/lib/ldscripts/i386pep.xa
+/usr/lib/ldscripts/elf_iamcu.xsc
+/usr/lib/ldscripts/elf_x86_64.xn
+/usr/lib/ldscripts/elf_x86_64.xdw
+/usr/lib/ldscripts/i386linux.xbn
+/usr/lib/ldscripts/elf_i386.xr
+/usr/lib/ldscripts/elf32_x86_64.xn
+/usr/lib/ldscripts/elf_k1om.xdw
+/usr/lib/ldscripts/elf_i386.xdc
+/usr/lib/ldscripts/elf_iamcu.xs
+/usr/lib/ldscripts/elf32_x86_64.xd
+/usr/lib/ldscripts/hppa64linux.xr
+/usr/lib/ldscripts/elf32_x86_64.xu
+/usr/lib/ldscripts/elf_iamcu.xr
+/usr/lib/ldscripts/elf_i386.xsc
+/usr/lib/ldscripts/elf_k1om.xbn
+/usr/lib/ldscripts/i386pe.xr
+/usr/lib/ldscripts/elf32_x86_64.xr
+/usr/lib/ldscripts/i386pe.x
+/usr/lib/ldscripts/elf_i386.x
+/usr/lib/ldscripts/elf_k1om.xsw
+/usr/lib/ldscripts/elf_l1om.xn
+/usr/lib/ldscripts/elf_iamcu.xc
+/usr/lib/ldscripts/elf_i386.xbn
+/usr/lib/ldscripts/elf_i386.xd
+/usr/lib/ldscripts/elf32_x86_64.xw
+/usr/lib/ldscripts/i386pep.xbn
+/usr/lib/ldscripts/elf_iamcu.xdc
+/usr/lib/ldscripts/elf_i386.xdw
+/usr/lib/ldscripts/elf_x86_64.xw
+/usr/lib/ldscripts/elf_x86_64.xs
+/usr/lib/ldscripts/i386linux.x
+/usr/lib/ldscripts/elf_l1om.xr
+/usr/lib/ldscripts/elf_x86_64.xbn
+/usr/lib/ldscripts/elf_iamcu.x
+/usr/lib/ldscripts/elf_x86_64.xc
+/usr/lib/ldscripts/elf_l1om.xdw
+/usr/lib/ldscripts/elf_l1om.xsw
+/usr/lib/ldscripts/elf_iamcu.xd
+/usr/lib/ldscripts/elf_x86_64.xu
+/usr/lib/ldscripts/elf_l1om.xc
+/usr/lib/ldscripts/hppa64linux.x
+/usr/lib/ldscripts/elf32_x86_64.x
+/usr/lib/ldscripts/i386pep.xn
+/usr/lib/ldscripts/elf_iamcu.xsw
+/usr/lib/ldscripts/elf32_x86_64.xc
+/usr/lib/ldscripts/i386pep.xu
+/usr/lib/ldscripts/i386linux.xn
+/usr/lib/compat-ld
+/usr/lib/gold-ld
+/usr/share
+/usr/share/bug
+/usr/share/bug/binutils
+/usr/share/bug/binutils/presubj
+/usr/share/lintian
+/usr/share/lintian/overrides
+/usr/share/lintian/overrides/binutils
+/usr/share/doc
+/usr/share/doc/binutils
+/usr/share/doc/binutils/NEWS.gz
+/usr/share/doc/binutils/copyright
+/usr/share/doc/binutils/test-summary.gz
+/usr/share/doc/binutils/ld
+/usr/share/doc/binutils/ld/NEWS.gz
+/usr/share/doc/binutils/ld/TODO.gz
+/usr/share/doc/binutils/changelog.Debian.gz
+/usr/share/doc/binutils/README.cross.gz
+/usr/share/doc/binutils/bfd
+/usr/share/doc/binutils/bfd/PORTING.gz
+/usr/share/doc/binutils/bfd/TODO.gz
+/usr/share/doc/binutils/gas
+/usr/share/doc/binutils/gas/NEWS.gz
+/usr/share/doc/binutils/gprof
+/usr/share/doc/binutils/gprof/TEST.gz
+/usr/share/doc/binutils/gprof/bbconv.pl
+/usr/share/doc/binutils/gprof/TODO.gz
+/usr/share/man
+/usr/share/man/man1
+/usr/share/man/man1/x86_64-linux-gnu-elfedit.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-dwp.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ranlib.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-addr2line.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ld.bfd.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ar.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-gprof.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ld.gold.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-strings.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-as.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-readelf.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-nm.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-strip.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-size.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-c++filt.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-objdump.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-objcopy.1.gz
+/usr/bin/as
+/usr/bin/elfedit
+/usr/bin/readelf
+/usr/bin/nm
+/usr/bin/c++filt
+/usr/bin/addr2line
+/usr/bin/ranlib
+/usr/bin/objdump
+/usr/bin/ar
+/usr/bin/objcopy
+/usr/bin/dwp
+/usr/bin/ld.gold
+/usr/bin/gold
+/usr/bin/ld
+/usr/bin/ld.bfd
+/usr/bin/strings
+/usr/bin/x86_64-linux-gnu-ld
+/usr/bin/gprof
+/usr/bin/size
+/usr/bin/strip
+/usr/lib/compat-ld/ld
+/usr/lib/gold-ld/ld
+/usr/share/man/man1/nm.1.gz
+/usr/share/man/man1/objcopy.1.gz
+/usr/share/man/man1/gold.1.gz
+/usr/share/man/man1/ld.bfd.1.gz
+/usr/share/man/man1/as.1.gz
+/usr/share/man/man1/gprof.1.gz
+/usr/share/man/man1/strip.1.gz
+/usr/share/man/man1/strings.1.gz
+/usr/share/man/man1/ld.1.gz
+/usr/share/man/man1/c++filt.1.gz
+/usr/share/man/man1/ranlib.1.gz
+/usr/share/man/man1/ld.gold.1.gz
+/usr/share/man/man1/size.1.gz
+/usr/share/man/man1/ar.1.gz
+/usr/share/man/man1/elfedit.1.gz
+/usr/share/man/man1/dwp.1.gz
+/usr/share/man/man1/objdump.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ld.1.gz
+/usr/share/man/man1/readelf.1.gz
+/usr/share/man/man1/addr2line.1.gz</code></pre>
+
+
+<h2 id="manpage">manpage</h2>
+<p>執行</p>
+<pre class="code"><code class="language-sh">$ dpkg -L binutils | grep '/man/man.*/' | sort</code></pre>
+
+
+<p>顯示</p>
+<pre class="code"><code>/usr/share/man/man1/addr2line.1.gz
+/usr/share/man/man1/ar.1.gz
+/usr/share/man/man1/as.1.gz
+/usr/share/man/man1/c++filt.1.gz
+/usr/share/man/man1/dwp.1.gz
+/usr/share/man/man1/elfedit.1.gz
+/usr/share/man/man1/gold.1.gz
+/usr/share/man/man1/gprof.1.gz
+/usr/share/man/man1/ld.1.gz
+/usr/share/man/man1/ld.bfd.1.gz
+/usr/share/man/man1/ld.gold.1.gz
+/usr/share/man/man1/nm.1.gz
+/usr/share/man/man1/objcopy.1.gz
+/usr/share/man/man1/objdump.1.gz
+/usr/share/man/man1/ranlib.1.gz
+/usr/share/man/man1/readelf.1.gz
+/usr/share/man/man1/size.1.gz
+/usr/share/man/man1/strings.1.gz
+/usr/share/man/man1/strip.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-addr2line.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ar.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-as.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-c++filt.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-dwp.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-elfedit.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-gprof.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ld.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ld.bfd.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ld.gold.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-nm.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-objcopy.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-objdump.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-ranlib.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-readelf.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-size.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-strings.1.gz
+/usr/share/man/man1/x86_64-linux-gnu-strip.1.gz</code></pre>
+
+
+<ul>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/addr2line.1.html">addr2line</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/ar.1.html">ar</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/as.1.html">as</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/c++filt.1.html">c++filt</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/dwp.1.html">dwp</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/elfedit.1.html">elfedit</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/gold.1.html">gold</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/gprof.1.html">gprof</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/ld.1.html">ld</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/ld.bfd.1.html">ld.bfd</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/ld.gold.1.html">ld.gold</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/nm.1.html">nm</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/objcopy.1.html">objcopy</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/objdump.1.html">objdump</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/ranlib.1.html">ranlib</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/readelf.1.html">readelf</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/size.1.html">size</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/strings.1.html">strings</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/strip.1.html">strip</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-addr2line.1.html">x86_64-linux-gnu-addr2line</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-ar.1.html">x86_64-linux-gnu-ar</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-as.1.html">x86_64-linux-gnu-as</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-c++filt.1.html">x86_64-linux-gnu-c++filt</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-dwp.1.html">x86_64-linux-gnu-dwp</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-elfedit.1.html">x86_64-linux-gnu-elfedit</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-gprof.1.html">x86_64-linux-gnu-gprof</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-ld.1.html">x86_64-linux-gnu-ld</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-ld.bfd.1.html">x86_64-linux-gnu-ld.bfd</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-ld.gold.1.html">x86_64-linux-gnu-ld.gold</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-nm.1.html">x86_64-linux-gnu-nm</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-objcopy.1.html">x86_64-linux-gnu-objcopy</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-objdump.1.html">x86_64-linux-gnu-objdump</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-ranlib.1.html">x86_64-linux-gnu-ranlib</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-readelf.1.html">x86_64-linux-gnu-readelf</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-size.1.html">x86_64-linux-gnu-size</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-strings.1.html">x86_64-linux-gnu-strings</a></li>
+<li>$ man 1 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man1/x86_64-linux-gnu-strip.1.html">x86_64-linux-gnu-strip</a></li>
+</ul>
+<h2 id="source-package">下載 Source Package</h2>
+<p>執行</p>
+<pre class="code"><code class="language-sh">$ apt source binutils</code></pre>
+
+
+<p>會下載「<a href="http://packages.ubuntu.com/source/xenial/binutils">binutils</a>」這個「Source Package」</p>
+<h2 id="_4">套件資訊</h2>
+<p>網址: <a href="http://packages.ubuntu.com/xenial/binutils">http://packages.ubuntu.com/xenial/binutils</a></p>
+<p>執行</p>
+<pre class="code"><code class="language-sh">$ apt show binutils</code></pre>
+
+
+<p>顯示</p>
+<pre class="code"><code>Package: binutils
+Version: 2.26-8ubuntu2.1
+Priority: optional
+Section: devel
+Origin: Ubuntu
+Maintainer: Ubuntu Core developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Original-Maintainer: Matthias Klose &lt;doko@debian.org&gt;
+Bugs: https://bugs.launchpad.net/ubuntu/+filebug
+Installed-Size: 13.7 MB
+Provides: binutils-gold, elf-binutils
+Depends: libc6 (&gt;= 2.14), zlib1g (&gt;= 1:1.2.0)
+Suggests: binutils-doc (&gt;= 2.26-8ubuntu2.1)
+Conflicts: binutils-gold (&lt;&lt; 2.20.51.20100415), binutils-mingw-w64-i686 (&lt;&lt; 2.23.52.20130612-1+3), binutils-mingw-w64-x86-64 (&lt;&lt; 2.23.52.20130612-1+3), elf-binutils, gas, modutils (&lt;&lt; 2.4.19-1)
+Breaks: binutils-mingw-w64-i686 (&lt;&lt; 2.23.52.20130612-1+3), binutils-mingw-w64-x86-64 (&lt;&lt; 2.23.52.20130612-1+3)
+Replaces: binutils-gold (&lt;&lt; 2.20.51.20100415), binutils-mingw-w64-i686 (&lt;&lt; 2.23.52.20130612-1+3), binutils-mingw-w64-x86-64 (&lt;&lt; 2.23.52.20130612-1+3)
+Task: ubuntu-desktop, ubuntu-usb, kubuntu-desktop, kubuntu-full, edubuntu-desktop, edubuntu-usb, xubuntu-core, xubuntu-desktop, mythbuntu-frontend, mythbuntu-desktop, mythbuntu-backend-slave, mythbuntu-backend-master, mythbuntu-backend-master, lubuntu-live, ubuntustudio-desktop-core, ubuntustudio-desktop, ubuntu-gnome-desktop, ubuntu-touch, ubuntukylin-desktop, ubuntu-mate-core, ubuntu-mate-desktop, ubuntu-mate-cloudtop
+Build-Essential: yes
+Supported: 5y
+Download-Size: 2,306 kB
+APT-Manual-Installed: yes
+APT-Sources: http://tw.archive.ubuntu.com/ubuntu xenial-updates/main amd64 Packages
+Description: GNU assembler, linker and binary utilities
+ The programs in this package are used to assemble, link and manipulate
+ binary and object files.  They may be used in conjunction with a compiler
+ and various libraries to build programs.
+
+N: There is 1 additional record. Please use the '-a' switch to see it</code></pre>
+
+
+<h2 id="_5">原始碼套件資訊</h2>
+<p>網址: <a href="http://packages.ubuntu.com/source/xenial/binutils">http://packages.ubuntu.com/source/xenial/binutils</a></p>
+<p>執行</p>
+<pre class="code"><code class="language-sh">$ apt showsrc binutils</code></pre>
+
+
+<p>顯示</p>
+<pre class="code"><code>Package: binutils
+Binary: binutils, binutils-dev, binutils-multiarch, binutils-multiarch-dev, binutils-hppa64-linux-gnu, binutils-doc, binutils-source, binutils-s390x-linux-gnu, binutils-powerpc64le-linux-gnu, binutils-powerpc-linux-gnu, binutils-aarch64-linux-gnu, binutils-arm-linux-gnueabihf, binutils-arm-linux-gnueabi, binutils-mips-linux-gnu, binutils-mipsel-linux-gnu, binutils-alpha-linux-gnu, binutils-hppa-linux-gnu, binutils-m68k-linux-gnu, binutils-mips64-linux-gnuabi64, binutils-mips64el-linux-gnuabi64, binutils-powerpc-linux-gnuspe, binutils-powerpc64-linux-gnu, binutils-sh4-linux-gnu, binutils-sparc64-linux-gnu
+Version: 2.26-8ubuntu2
+Priority: optional
+Section: devel
+Maintainer: Ubuntu Core developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Original-Maintainer: Matthias Klose &lt;doko@debian.org&gt;
+Build-Depends: autoconf (&gt;= 2.64), dpkg-dev (&gt;= 1.17.11), bison, flex, gettext, texinfo, dejagnu, quilt, chrpath, python3:any, file, xz-utils, lsb-release, zlib1g-dev
+Architecture: any all
+Standards-Version: 3.9.7
+Format: 1.0
+Directory: pool/main/b/binutils
+Files:
+ ab5368ae1c0b5dd0cf0dd5ee60c584bf 3987 binutils_2.26-8ubuntu2.dsc
+ d66e2b663757cbf5d4b060feb4ef6b4b 34832117 binutils_2.26.orig.tar.gz
+ a95d9a8123cb4cd52c595ee21f0035ca 190857 binutils_2.26-8ubuntu2.diff.gz
+Uploaders: James Troup &lt;james@nocrew.org&gt;, Daniel Jacobowitz &lt;dan@debian.org&gt;
+Testsuite: autopkgtest
+Package-List:
+ binutils deb devel optional arch=any
+ binutils-aarch64-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-alpha-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-arm-linux-gnueabi deb devel extra arch=amd64,i386,x32,arm64
+ binutils-arm-linux-gnueabihf deb devel extra arch=amd64,i386,x32,arm64
+ binutils-dev deb devel extra arch=any
+ binutils-doc deb doc optional arch=all
+ binutils-hppa-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-hppa64-linux-gnu deb devel optional arch=amd64,i386,x32,hppa
+ binutils-m68k-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-mips-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-mips64-linux-gnuabi64 deb devel extra arch=amd64,i386,x32
+ binutils-mips64el-linux-gnuabi64 deb devel extra arch=amd64,i386,x32
+ binutils-mipsel-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-multiarch deb devel extra arch=any
+ binutils-multiarch-dev deb devel extra arch=any
+ binutils-powerpc-linux-gnu deb devel extra arch=amd64,i386,x32,ppc64el
+ binutils-powerpc-linux-gnuspe deb devel extra arch=amd64,i386,x32
+ binutils-powerpc64-linux-gnu deb devel extra arch=amd64,i386,x32,ppc64el
+ binutils-powerpc64le-linux-gnu deb devel extra arch=amd64,i386,x32,ppc64
+ binutils-s390x-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-sh4-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-source deb devel optional arch=all
+ binutils-sparc64-linux-gnu deb devel extra arch=amd64,i386,x32
+Checksums-Sha1:
+ 2d726a7438663a1f9734b21a633de4fb02ded3d4 3987 binutils_2.26-8ubuntu2.dsc
+ bb933ec42eb2002d9270bd4c62a26c3706589ee9 34832117 binutils_2.26.orig.tar.gz
+ 323920a9bb609c31f6111d83efef3044d695a91f 190857 binutils_2.26-8ubuntu2.diff.gz
+Checksums-Sha256:
+ 7ef3e4ef9d8124d278a7cfbd13c2f0a2a460b6aa7ab8228dfe462a4834274c9e 3987 binutils_2.26-8ubuntu2.dsc
+ 9615feddaeedc214d1a1ecd77b6697449c952eab69d79ab2125ea050e944bcc1 34832117 binutils_2.26.orig.tar.gz
+ a951fa51853e03f3f31d27f2acffd8f1cfdf03fe09cdd271e5b63d423750c070 190857 binutils_2.26-8ubuntu2.diff.gz
+
+Package: binutils
+Binary: binutils, binutils-dev, binutils-multiarch, binutils-multiarch-dev, binutils-hppa64-linux-gnu, binutils-doc, binutils-source, binutils-s390x-linux-gnu, binutils-powerpc64le-linux-gnu, binutils-powerpc-linux-gnu, binutils-aarch64-linux-gnu, binutils-arm-linux-gnueabihf, binutils-arm-linux-gnueabi, binutils-mips-linux-gnu, binutils-mipsel-linux-gnu, binutils-alpha-linux-gnu, binutils-hppa-linux-gnu, binutils-m68k-linux-gnu, binutils-mips64-linux-gnuabi64, binutils-mips64el-linux-gnuabi64, binutils-powerpc-linux-gnuspe, binutils-powerpc64-linux-gnu, binutils-sh4-linux-gnu, binutils-sparc64-linux-gnu
+Version: 2.26-8ubuntu2.1
+Priority: optional
+Section: devel
+Maintainer: Ubuntu Core developers &lt;ubuntu-devel-discuss@lists.ubuntu.com&gt;
+Original-Maintainer: Matthias Klose &lt;doko@debian.org&gt;
+Build-Depends: autoconf (&gt;= 2.64), dpkg-dev (&gt;= 1.17.11), bison, flex, gettext, texinfo, dejagnu, quilt, chrpath, python3:any, file, xz-utils, lsb-release, zlib1g-dev
+Architecture: any all
+Standards-Version: 3.9.7
+Format: 1.0
+Directory: pool/main/b/binutils
+Files:
+ 706072339a024067acb5ddab270ded0a 3995 binutils_2.26-8ubuntu2.1.dsc
+ d66e2b663757cbf5d4b060feb4ef6b4b 34832117 binutils_2.26.orig.tar.gz
+ 8a80ae0dabc50ae66b8086eb8ae5ef1a 193410 binutils_2.26-8ubuntu2.1.diff.gz
+Uploaders: James Troup &lt;james@nocrew.org&gt;, Daniel Jacobowitz &lt;dan@debian.org&gt;
+Testsuite: autopkgtest
+Package-List:
+ binutils deb devel optional arch=any
+ binutils-aarch64-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-alpha-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-arm-linux-gnueabi deb devel extra arch=amd64,i386,x32,arm64
+ binutils-arm-linux-gnueabihf deb devel extra arch=amd64,i386,x32,arm64
+ binutils-dev deb devel extra arch=any
+ binutils-doc deb doc optional arch=all
+ binutils-hppa-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-hppa64-linux-gnu deb devel optional arch=amd64,i386,x32,hppa
+ binutils-m68k-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-mips-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-mips64-linux-gnuabi64 deb devel extra arch=amd64,i386,x32
+ binutils-mips64el-linux-gnuabi64 deb devel extra arch=amd64,i386,x32
+ binutils-mipsel-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-multiarch deb devel extra arch=any
+ binutils-multiarch-dev deb devel extra arch=any
+ binutils-powerpc-linux-gnu deb devel extra arch=amd64,i386,x32,ppc64el
+ binutils-powerpc-linux-gnuspe deb devel extra arch=amd64,i386,x32
+ binutils-powerpc64-linux-gnu deb devel extra arch=amd64,i386,x32,ppc64el
+ binutils-powerpc64le-linux-gnu deb devel extra arch=amd64,i386,x32,ppc64
+ binutils-s390x-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-sh4-linux-gnu deb devel extra arch=amd64,i386,x32
+ binutils-source deb devel optional arch=all
+ binutils-sparc64-linux-gnu deb devel extra arch=amd64,i386,x32
+Checksums-Sha1:
+ 7d0acc85db48e9e7e2ef418f61284838ee02a58a 3995 binutils_2.26-8ubuntu2.1.dsc
+ bb933ec42eb2002d9270bd4c62a26c3706589ee9 34832117 binutils_2.26.orig.tar.gz
+ 44fbad403378e29f3765179b83604eb98bfc431b 193410 binutils_2.26-8ubuntu2.1.diff.gz
+Checksums-Sha256:
+ 229dd43ba11dc53dadaab8dd0b80f90f2781f1bf0a3af673afb586f841ea035b 3995 binutils_2.26-8ubuntu2.1.dsc
+ 9615feddaeedc214d1a1ecd77b6697449c952eab69d79ab2125ea050e944bcc1 34832117 binutils_2.26.orig.tar.gz
+ fb4249fc287832c9fb9daf552a669b08e8af987b8aeafeb1cd60e157578e805b 193410 binutils_2.26-8ubuntu2.1.diff.gz</code></pre>
+				<aside class="copyright" role="note">
+					 Copyright (c) foreachsam &ndash;  Documentation built with
+					<a href="http://www.mkdocs.org" target="_blank">MkDocs</a> using the
+					<a href="http://squidfunk.github.io/mkdocs-material/" target="_blank">
+              Material
+            </a> theme.
+				</aside>
+				
+				<footer class="footer">
+					
+<nav class="pagination" aria-label="Footer">
+	<div class="previous">
+		
+		<a href="../" title="index">
+			<span class="direction">
+            上一頁
+          </span>
+			<div class="page">
+				<div class="button button-previous" role="button" aria-label="Previous">
+					<i class="icon icon-back"></i>
+				</div>
+				<div class="stretch">
+					<div class="title">
+						index
+					</div>
+				</div>
+			</div>
+		</a>
+		
+	</div>
+	<div class="next">
+		
+		<a href="../../command/strings/" title="strings">
+			<span class="direction">
+            下一頁
+          </span>
+			<div class="page">
+				<div class="stretch">
+					<div class="title">
+						strings
+					</div>
+				</div>
+				<div class="button button-next" role="button" aria-label="Next">
+					<i class="icon icon-forward"></i>
+				</div>
+			</div>
+		</a>
+		
+	</div>
+</nav>
+
+				</footer>
+				
+			</div>
+		</article>
+		<div class="results" role="status" aria-live="polite">
+			<div class="scrollable">
+				<div class="wrapper">
+					<div class="meta"></div>
+					<div class="list"></div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script>
+		var base_url = '../../..';
+		var repo_id = '';
+	</script>
+	<script src="../../../assets/javascripts/application-997097ee0c.js"></script>
+	
+
+
+<script>
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document,
+		'script', '//www.google-analytics.com/analytics.js', 'ga');
+	/* General initialization */
+	ga('create', 'UA-56999876-1', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+	/* Track outbound links */
+	var buttons = document.querySelectorAll('a');
+	Array.prototype.map.call(buttons, function(item) {
+		if (item.host != document.location.host) {
+			item.addEventListener('click', function() {
+				var action = item.getAttribute('data-action') || 'follow';
+				ga('send', 'event', 'outbound', action, item.href);
+			});
+		}
+	});
+	/* Register handler to log search on blur */
+	var query = document.querySelector('.query');
+	query.addEventListener('blur', function() {
+		if (this.value) {
+			var path = document.location.pathname;
+			ga('send', 'pageview', path + '?q=' + this.value);
+		}
+	});
+</script>
+
+
+</body>
+
+</html>

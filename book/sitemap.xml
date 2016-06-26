@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>https://foreachsam.github.io/book-util-binutils/book/</loc>
+     <lastmod>2016-06-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>https://foreachsam.github.io/book-util-binutils/book/content/reference/manual/</loc>
+     <lastmod>2016-06-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://foreachsam.github.io/book-util-binutils/book/content/deb-package/</loc>
+     <lastmod>2016-06-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://foreachsam.github.io/book-util-binutils/book/content/deb-package/binutils/</loc>
+     <lastmod>2016-06-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://foreachsam.github.io/book-util-binutils/book/content/command/strings/</loc>
+     <lastmod>2016-06-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+</urlset>
