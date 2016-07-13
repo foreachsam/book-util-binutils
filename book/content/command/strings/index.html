@@ -390,6 +390,35 @@ This program has absolutely no warranty.</code></pre>
 <h2 id="_2">使用範例</h2>
 <p>執行</p>
 <pre class="code"><code class="language-sh">$ strings /bin/ls</code></pre>
+
+
+<p>執行</p>
+<pre class="code"><code class="language-sh">$ sudo strings /proc/1/environ</code></pre>
+
+
+<p>顯示</p>
+<pre class="code"><code class="language-sh">$ sudo strings /proc/1/cmdline</code></pre>
+
+
+<p>執行下面其中一個指令</p>
+<ul>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man5/proc.5.html">proc</a></li>
+<li>$ man 5 <a href="http://manpages.ubuntu.com/manpages/xenial/en/man5/procfs.5.html">procfs</a></li>
+</ul>
+<p>可以找到相關的說明</p>
+<pre class="code"><code>/proc/[pid]/environ
+       This file contains the environment for the process.  The entries are separated by null bytes ('\0'), and
+       there may be a null byte at the end.  Thus, to print out the environment of process 1, you would do:
+
+           $ strings /proc/1/environ</code></pre>
+
+
+<p>以及</p>
+<pre class="code"><code>/proc/[pid]/cmdline
+       This read-only file holds the complete command line for the process, unless the process is a zombie.  In
+       the  latter  case, there is nothing in this file: that is, a read on this file will return 0 characters.
+       The command-line arguments appear in this file as a set of strings separated by null bytes ('\0'),  with
+       a further null byte after the last string.</code></pre>
 				<aside class="copyright" role="note">
 					 Copyright (c) foreachsam &ndash;  Documentation built with
 					<a href="http://www.mkdocs.org" target="_blank">MkDocs</a> using the
